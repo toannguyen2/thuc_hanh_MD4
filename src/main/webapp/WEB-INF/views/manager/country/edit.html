@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Country</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="container-xl">
+        <div th:if="${success}" th:text="${success}" class="bg-success text-white mb-3 p-2"></div>
+        <a th:href="@{/country}" class="btn btn-outline-dark mb-3">Back</a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title m-0">Edit country</div>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/country/edit/{id}(id=${country.getId()})}" th:object="${country}" method="POST">
+                    <input type="hidden" name="id" th:field="*{id}" />
+                    <div class="form-group">
+                        <label for="name">Name country</label>
+                        <input class="form-control" type="text" id="name" name="name" th:field="*{name}" required />
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Edit</button>
+                    <a th:href="@{/country}" class="btn btn btn-outline-dark">Back</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

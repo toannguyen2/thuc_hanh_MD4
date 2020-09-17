@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin thành phố</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="container-xl">
+        <a th:href="@{/}" class="btn btn-outline-dark mb-3">Home</a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title m-0">Thông tin thành phố</div>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Thành phố: </span>
+                        <th:block th:text="${city.name}"></th:block>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Quốc gia: </span>
+                        <th:block th:text="${city.getCountry().getName()}"></th:block>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Diện tích: </span>
+                        <th:block th:text="${@formatNumber.format(city.acreage)}"></th:block>
+                        km²
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Dân số: </span>
+                        <th:block th:text="${city.getPopulation()}"></th:block>
+                        người
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">GDP: </span>
+                        <th:block th:text="${@formatNumber.format(city.getGdp())}"></th:block>
+                        $
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Mô tả: </span>
+                        <th:block th:utext="${city.description}"></th:block>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a th:href="@{/}" class="btn btn-outline-dark mt-3">Home</a>
+    </section>
+</div>
+</body>
+</html>

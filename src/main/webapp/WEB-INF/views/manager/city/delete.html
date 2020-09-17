@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete city</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="container-xl">
+        <div th:if="${success}" th:text="${success}" class="bg-success text-white mb-3 p-2"></div>
+        <a th:href="@{/}" class="btn btn-outline-dark mb-3">Home</a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title m-0">Xóa thành phố</div>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/delete/{id}(id=${city.getId()})}" method="POST" th:object="${city}">
+                    <div class="form-group">
+                        <label for="name">Tên thành phố</label>
+                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Quốc gia</label>
+                        <input type="text" class="form-control" id="country" name="country" th:value="${city.getCountry().getName()}" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="acreage">Diện tích</label>
+                        <input type="text" class="form-control" id="acreage" name="acreage" th:field="*{acreage}" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="population">Dân số</label>
+                        <input type="text" class="form-control" id="population" name="population" th:field="*{population}"  disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="gdp">GDP</label>
+                        <input type="text" class="form-control" id="gdp" name="gdp" th:field="*{gdp}" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Mô tả</label>
+                        <textarea disabled class="form-control" id="description" name="description" th:field="*{description}" rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-outline-success" type="submit">Xóa</button>
+                    <a th:href="@{/}" class="btn btn-outline-dark">Home</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

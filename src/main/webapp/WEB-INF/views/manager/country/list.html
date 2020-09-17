@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Country manager</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="container-xl">
+        <div th:if="${success}" th:text="${success}" class="bg-success text-white mb-3 p-2"></div>
+        <a th:href="@{/country/add}" class="btn btn-outline-dark mb-3">Add country</a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title m-0">Quản lý quốc gia</div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table m-0">
+                    <thead>
+                    <tr>
+                        <th>Quốc gia</th>
+                        <th class="text-right">Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="country: ${list}">
+                        <td th:text="${country.getName()}" class="align-middle"></td>
+                        <td class="text-right">
+                            <a class="btn btn-outline-dark" th:href="@{/country/edit/{id}(id=${country.getId()})}">Edit</a>
+                            <a class="btn btn-outline-dark" th:href="@{/country/delete/{id}(id=${country.getId()})}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
